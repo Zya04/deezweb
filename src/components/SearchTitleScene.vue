@@ -1,8 +1,15 @@
 <template>
     <div class="searchTitle">
-        <form>
+        <form @submit="displayArtist">
             <input type="text" v-model="artist">
-            <button @click="displayArtist">Chercher</button>
+            <select id="filter" v-model="filter" @submit="displayArtist">
+                <option value="ALBUM_ASC">Album</option>
+                <option value="ARTIST_ASC">Artiste</option>
+                <option value="TRACK_ASC">Titre</option>
+                <option value="RANKING">Popularité</option>
+                <option value="RATING_ASC">Mieux notés</option>
+            </select>
+            <button >Chercher</button>
         </form>
         <div v-if="search.length !== 0 " class="allCard" >
            <Card v-for="(music, index) in search" :key="index" :search="music"/>
@@ -23,19 +30,20 @@ export default {
         return {
             artist: "",
             search: [],
+            filter: "TRACK_ASC",
         }
     },
     components: {
         Card
     },
     props: {
-        msg: String,
     },
     methods: {
-        displayArtist(artist){
+        displayArtist(artist, filter){
             this.search = [];
             artist = this.artist
-            MusicService.search(artist).then((res) => {
+            filter = this.filter
+            MusicService.search(artist, filter  ).then((res) => {
                 res.data.map(music => {
                     this.search.push(music)                    
                     console.log(this.search)
