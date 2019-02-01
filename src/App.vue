@@ -28,7 +28,7 @@
     font-weight: bold;
     color: white;
     &.router-link-exact-active {
-      color: #99b6a9;
+      color: white;
     }
   }
 }
@@ -37,12 +37,7 @@
     overflow: hidden;
     margin-bottom: 3em;
 }
-.navbar > .container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-}
+
 .navbar a:link,
 .navbar a:visited {
     color: white;

@@ -53,10 +53,12 @@ export default {
 }
 </script>
 
-<style>
+<style <style lang="scss" scoped>
+
 .allCard{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
 </style>
 
